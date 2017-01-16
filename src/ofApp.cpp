@@ -10,7 +10,7 @@ void ofApp::setup(){
     for(int i =0; i < NUM_TABLES; i++){
         for(int j = 0; j<BUTTONS_PR_TABLE;j++){
             
-            Button b = *new Button;
+            Button b = * new Button;
             b.setup(j,i, getAdress(0, i, j), getAdress(1, i, j));
             b.set(ofRandom(1),ofRandom(1),ofRandom(2*PI));
             buttons[indx] = b;
@@ -19,20 +19,21 @@ void ofApp::setup(){
         }
     }
     
-    //setup scene
-    
+    //load fonts
     font_x_small.load("fonts/GT.ttf", 20);
     font_small.load("fonts/GT.ttf", 30);
     font_medium.load("fonts/GT.ttf", 65);
     font_large.load("fonts/GT.ttf", 140);
     
-    scene.buttons = &buttons;
-    scene.font_small = &font_small;
-    scene.font_medium = &font_medium;
-    scene.font_large = &font_large;
-    scene.cc = &cc;
+    //set common objects to point at fonts and button map
+    co.buttons = &buttons;
+    co.font_small = &font_small;
+    co.font_medium = &font_medium;
+    co.font_large = &font_large;
     
-    scene.setup();
+    //setup scene
+    scene.setup(&co);
+    scene01.setup(&co);
     
     //allocate framebuffer
     fbo.allocate(1920, 1080, GL_RGBA);
@@ -42,14 +43,14 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    if(debug)ofSetWindowTitle("framerate: "+ofToString(ofGetFrameRate(),1));
+    ofSetWindowTitle("framerate: "+ofToString(ofGetFrameRate(),1));
 
     // update from incoming osc
     while (receiver.hasWaitingMessages()) {
         ofxOscMessage m;
         receiver.getNextMessage(m);
         // set button values
-        if(!cc.lock){
+        if(!co.lock){
             for(int i = 0; i < NUM_TABLES*BUTTONS_PR_TABLE; i++){
                 Button *b = &buttons.find(i)->second;
                 if( m.getAddress()==b->address ){
@@ -64,9 +65,12 @@ void ofApp::update(){
         }
     }
     
-    //update scene values
-    scene.calculate();
     
+    
+    //update scene values
+    if(sceneNumber==0)scene.calculate();
+    if(sceneNumber==1)scene01.calculate();
+
 }
 
 //--------------------------------------------------------------
@@ -76,11 +80,18 @@ void ofApp::draw(){
     ofClear(0);
     ofBackground(0);
     
-    ofSetColor(ofColor::white);
-    cc.drawCollumn("press d to draw all buttons at they positions", 70, 1000, 500, &font_x_small);
-    if(debug)for (auto& b : buttons)b.second.drawDebug();
 
-    scene.draw();
+
+    if(sceneNumber==0)scene.draw();
+    if(sceneNumber==1)scene01.draw();
+    
+    
+    ofSetColor(ofColor::white);
+    if(debug){
+        for (auto& b : buttons)b.second.drawDebug();
+        cc.drawCollumn("press 'd' to draw all buttons at they positions, 's' to start scene timer and 'r' to reset the scene. Press any number key to change scene- Current scene = "+ofToString(sceneNumber), 70, 950, 400, &font_x_small);
+    }
+    
     fbo.end();
     
     fbo.draw(0,0, ofGetWidth(), 1080.0f * (ofGetWidth() / 1920.0f) );
@@ -91,6 +102,15 @@ void ofApp::keyPressed(int key){
     
     if(key == 'd') debug = !debug;
     if(key == 'r') scene.reset();
+    if(key == 's') co.start=true;
+    
+    if(key - '0' < 9) {
+        co.start = false;
+        co.lock = false;
+        scene.reset();
+        scene01.reset();
+        sceneNumber = key - '0';
+    }
 }
 
 //--------------------------------------------------------------

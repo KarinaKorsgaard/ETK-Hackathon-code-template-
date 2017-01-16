@@ -2,14 +2,10 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
-#include "Button.h"
-#include "Scene.h"
-#include "ofxTrueTypeFontUC.h"
 #include "common.h"
 
-#define PORT 5000
-#define NUM_TABLES 12
-#define BUTTONS_PR_TABLE 6
+#include "Scene.h"
+#include "Scene01.h"
 
 class ofApp : public ofBaseApp{
 
@@ -33,19 +29,26 @@ class ofApp : public ofBaseApp{
     
 
     ofFbo fbo;
+    commonObjects co;
     commonFunctions cc;
-    map< int , Button > buttons;
+    
     string getAdress(int firstOrSecond, int _table, int _button);
+    
+    map< int , Button > buttons;
 	ofxTrueTypeFontUC font_x_small;
     ofxTrueTypeFontUC font_small;
     ofxTrueTypeFontUC font_medium;
     ofxTrueTypeFontUC font_large;
+    
     bool debug = false;
     ofxOscReceiver receiver;
+    int sceneNumber=0;
     
     
-    
+    //scenes
     Scene scene;
+    Scene01 scene01;
+
 };
 
 

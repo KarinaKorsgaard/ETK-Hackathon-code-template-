@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1E2006052D2B7B0BAF3C06D1C58CEF6963D89C40",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1E2006052D2B7B0BAF3C06D1C58CEF6963D89C40" : 0,
+    "6E85F585BA7940AD33F8E74F0EE05D55511194B6" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1A910EC8-5C6A-453D-BDED-815B35FAF4C6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1E2006052D2B7B0BAF3C06D1C58CEF6963D89C40" : "ETK_2017\/",
+    "6E85F585BA7940AD33F8E74F0EE05D55511194B6" : "..\/..\/addons\/ofxTrueTypeFontUC"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ETK_2017",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ETK_2017.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/KarinaKorsgaard\/olympia2017.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1E2006052D2B7B0BAF3C06D1C58CEF6963D89C40"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hironishihara\/ofxTrueTypeFontUC.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6E85F585BA7940AD33F8E74F0EE05D55511194B6"
+    }
+  ]
+}

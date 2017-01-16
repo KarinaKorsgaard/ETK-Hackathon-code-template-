@@ -12,7 +12,7 @@
 
 #include "ofMain.h"
 #include "ofxTrueTypeFontUC.h"
-#include "common.h"
+
 
 class Button{
 public:
@@ -43,7 +43,7 @@ public:
         r=_r;
     }
     ofPoint getGridPos(){
-        return ofPoint(table * 70 + int(table/4)*20 + (1920 -( 70*12+20*3 + 70) ), row * 70 + 70);
+        return ofPoint(table * 70 + int(table/4)*20 + (1920 -( 70*12+20*3 + 70) ), row * 70 + 140);
     }
     ofPoint getPos(){
         return ofPoint(x*1920.0f, y*1080.0f);
